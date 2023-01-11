@@ -1,0 +1,126 @@
+QMainWindow {background: white;}
+
+QMenuBar {
+			border-bottom: 1px solid black;
+		}
+
+QMenuBar::item:selected {
+				background: #f5d6d6;
+				}
+
+QFrame {
+		border: 0px solid;
+	}
+
+QTableWidget {
+				outline: none; 
+				gridline-color: black; 
+				selection-background-color: #e87d68;
+			}
+
+QTableWidget::item {border: 0px solid black; padding: 5px;}
+
+QTableWidget::item:selected {color: white}
+
+QTableWidget::item:selected:hover {color: white}
+
+QTableWidget::item:hover {color: black}
+
+QHeaderView::section {
+						background: white;
+						color: #b30000;
+						font-size: 20px;
+					}
+QPushButton {
+				font: bold 16px 'Bookman Old Style';
+				border: 1px solid black;
+				padding: 5px;	
+			}
+
+
+QPushButton#translate {
+						background-color : #b30000; 
+						color: white; 
+						font-weight: normal; 
+						border-color: #b30000;
+					}
+
+QPushButton#translate:hover {
+								background-color : white;
+								color: #b30000;
+							}
+
+QPushButton#translate:pressed {
+								background-color : #b30000;
+								color: white;
+							}
+
+QPushButton#edit {
+					background-color : white; 
+					color: #d66e11; 
+					border-color: #d66e11;
+					}
+
+QPushButton#edit:hover {
+							background-color : #ffe4c2;
+							}
+
+QPushButton#edit:pressed {
+							background-color : #d66e11;
+							color: white;
+							}
+
+QPushButton#add_word {
+						background-color : white; 
+						color: #53964a; 
+						border-color: #53964a;
+					}
+
+QPushButton#add_word:hover {
+								background-color: #cbf7c5;
+							}
+
+QPushButton#add_word:pressed {
+								background-color : #53964a;
+								color: white;
+							}
+
+QPushButton#ok, QPushButton#cansel {
+								font: normal 14px 'Arial';
+								background-color : #b3d7ee; 
+								border-color: #b3d7ee;
+							}
+
+QPushButton#ok:hover, QPushButton#cansel:hover {
+								background-color: white;
+							}
+
+
+QLineEdit {
+			border: 1px solid black;
+			padding: 2px;
+			font: 16px 'Times New Roman';	
+			}
+
+QTextEdit {
+			border: 1px solid black;
+			padding: 2px;
+			font: 16px 'Times New Roman';	
+			}
+
+QLabel {
+		padding: 2px;
+		font: 14px 'Arial';	
+		}
+
+QLabel#translation {
+					padding: 2px;
+					font: bold 18px 'Arial';	
+					}
+QLabel#meaning {
+				padding: 2px;
+				font: italic 14px 'Arial';	
+				}
+
+
+QLabel#invis {background: #f4ead8;}
