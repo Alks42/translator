@@ -203,6 +203,7 @@ class Ui_MainWindow(MainWindow):
         self.table.verticalHeader().hide()
         self.table.setHorizontalHeaderLabels(["Word", "Translation"])
 
+        self.table.setShowGrid(False)
         self.table.horizontalHeader().setHighlightSections(False)
         self.table.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
         self.table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -229,6 +230,7 @@ class Ui_MainWindow(MainWindow):
             self.table.setItem(row, 0, QtWidgets.QTableWidgetItem(key))
             self.table.setItem(row, 1, QtWidgets.QTableWidgetItem(translation))
             self.table.item(row, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.table.verticalHeader().setSectionResizeMode(row, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
 
         self.table.selectRow(0)
         self.table.setFocus()
@@ -252,7 +254,7 @@ class Ui_MainWindow(MainWindow):
             text.setStyleSheet("border: 0px solid white")
             text.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 
-            font_metrics = QtGui.QFontMetrics(text.document().defaultFont())
+            font_metrics = QtGui.QFontMetrics(QtGui.QFont('Times New Roman', 16))
             height = font_metrics.size(0, string).height()
             text.setFixedHeight(height + h)
 
@@ -278,15 +280,15 @@ class Ui_MainWindow(MainWindow):
 
                 if key != 'meanings':
                     string = ', '.join(display[key])
-                    populate_layout('\t', string, x + 1, 40 if len(string) < 109 else 60)
+                    populate_layout('\t', string, x + 1, 15 if len(string) < 109 else 70)
                 else:
                     for k, meanings in display['meanings'].items():
                         if display['meanings'][k]:
-                            h = 55 if len(meanings) < 6 else (90 if len(meanings) < 12 else 110)
-                            populate_layout(f'   {k}:', '\n'.join(meanings), x + 1, h)
+                            populate_layout(f'   {k}:', '\n'.join(meanings), x + 1, 20)
                             x += 1
                 x += 2
         invis_label = QtWidgets.QLabel()
+        invis_label.setMinimumHeight(0)
         invis_label.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         self.tr_scroll_layout.addWidget(invis_label, x, 1, 1, 2)
 

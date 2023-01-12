@@ -13,12 +13,11 @@ QFrame {
 	}
 
 QTableWidget {
-				outline: none; 
-				gridline-color: black; 
+				outline: none;
 				selection-background-color: #e87d68;
 			}
 
-QTableWidget::item {border: 0px solid black; padding: 5px;}
+QTableWidget::item {border: 1px solid black; padding: 5px;}
 
 QTableWidget::item:selected {color: white}
 
