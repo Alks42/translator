@@ -15,7 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gridLayout.setSpacing(0)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.setWindowTitle('Translator')
-        # self.setWindowIcon(QtGui.QIcon('lsa.ico'))
+        self.setWindowIcon(QtGui.QIcon('tr.ico'))
         self.setAutoFillBackground(True)
         self.setCentralWidget(self.gridLayoutWidget)
         with open('style.css') as f:
@@ -196,7 +196,6 @@ class Ui_MainWindow(MainWindow):
         self.table.itemClicked.connect(self.table.setFocus)
 
         self.tr_frame.hide()
-        self.table.setContentsMargins(0, 0, 0, 0)
 
     def setup_table(self):
         self.table.setColumnCount(2)
@@ -254,8 +253,8 @@ class Ui_MainWindow(MainWindow):
             text.setStyleSheet("border: 0px solid white")
             text.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 
-            font_metrics = QtGui.QFontMetrics(QtGui.QFont('Times New Roman', 16))
-            height = font_metrics.size(0, string).height()
+            # adjust size of qtexedit to fit string as close as possible
+            height = QtGui.QFontMetrics(QtGui.QFont('Times New Roman', 16)).size(0, string).height()
             text.setFixedHeight(height + h)
 
             text.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -284,16 +283,16 @@ class Ui_MainWindow(MainWindow):
                 else:
                     for k, meanings in display['meanings'].items():
                         if display['meanings'][k]:
-                            populate_layout(f'   {k}:', '\n'.join(meanings), x + 1, 20)
+                            populate_layout(f'   {k}:', '\n'.join(meanings), x + 1, 25)
                             x += 1
                 x += 2
         invis_label = QtWidgets.QLabel()
-        invis_label.setMinimumHeight(0)
         invis_label.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         self.tr_scroll_layout.addWidget(invis_label, x, 1, 1, 2)
 
     def add_word(self, translation):
         if self.edit:
+            # create edited translation
             word = list(translation.keys())[0]
             for i in range(self.tr_scroll_layout.rowCount()):
                 if self.tr_scroll_layout.itemAtPosition(i, 0):
@@ -394,8 +393,12 @@ class Translate(QtCore.QThread):
     update = QtCore.pyqtSignal(object)
 
     def run(self):
+        ui.tr_button.setText('Translating...')
+        ui.tr_button.setEnabled(False)
         if tr.connection():
             self.update.emit({ui.tr_form.text().lower(): tr.translate(ui.tr_form.text().lower())})
+        ui.tr_button.setEnabled(True)
+        ui.tr_button.setText('Translate')
 
 
 if __name__ == "__main__":
