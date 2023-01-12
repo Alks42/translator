@@ -112,7 +112,7 @@ class Ui_MainWindow(MainWindow):
 
         self.help = QtGui.QAction()
         self.help.setText('Help')
-        self.help.triggered.connect(lambda: webbrowser.open('https://github.com/Alks42'))
+        self.help.triggered.connect(lambda: webbrowser.open('https://github.com/Alks42/translator'))
 
         self.menu_bar.addAction(self.menu_add)
         self.menu_bar.addAction(self.menu_collapse)
